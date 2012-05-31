@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name = "Twitter Spell Checking",
+    name = "twitter-spell-checking",
     version = "0.1",
     packages = find_packages(),
     include_package_data = True,
