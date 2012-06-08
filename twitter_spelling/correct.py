@@ -58,10 +58,30 @@ class Correct(object):
         CONFIG = ConfigParser.ConfigParser()
         CONFIG.read(settings_file)
 
-        config = items_to_dict(CONFIG.items('namespace:%s' % namespace))
-        self.key = '%s:%s' % (settings_file, namespace)
-        if self.key not in Correct.NWORDS:
-            Correct.NWORDS[self.key] = train(words(open(os.path.join(config['files'], 'tweets_%s.txt' % namespace)).read()))
+        self.config = items_to_dict(CONFIG.items('namespace:%s' % namespace))
+        self._key = '%s:%s' % (settings_file, namespace)
+        self._train_with(self._key)
+
+    def _train_with(self, key):
+        """
+        If given `key` has not trained content already,
+        compute it into NWORDS[key].
+        """
+        if key not in Correct.NWORDS:
+            Correct.NWORDS[self._key] = train(words(open(os.path.join(self.config['files'],
+                                                        'tweets_%s.txt' % self.namespace)).read()))
+
+    @property
+    def key(self):
+        self._key = ':'.join([self.settings_file, self.namespace])
+        self._train_with(self._key)  # Compute corrections for generated key
+        return self._key
+
+    @key.setter
+    def key(self, value):
+        """Nota : value should be a pair, like (settings_file, namespace)"""
+        self._key = ':'.join(value)
+        self._train_with(self._key)  # Compute corrections for generated key
 
     def correct(self, word):
         cw = CorrectWord(self)
