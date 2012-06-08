@@ -55,8 +55,8 @@ Spell Checking
 Some parts of code from http://norvig.com/spell-correct.html
 
 ```
-from twitter_spelling import Correct
-c = Correct(settings_file_location)
+from twitter_spelling.correct import Correct
+c = Correct(settings_file_location, namespace='en')
 c.correct('my expression')
 ```
 
