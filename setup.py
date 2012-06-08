@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name = "Twitter Spell Checking",
+    name = "twitter-spell-checking",
     version = "0.1",
     packages = find_packages(),
     include_package_data = True,
@@ -12,7 +12,10 @@ setup(
     license = "Apache",
     keywords = "twitter license licenser open-source",
     url = "http://github.com/sem-io/python-twitter-spell-checking",
-    install_requires = ['python-twitter'],
+    install_requires = [
+        'python-twitter',
+        'ujson'
+    ],
 
     # Setting up executable/main functions links
     entry_points = {
