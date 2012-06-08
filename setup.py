@@ -12,7 +12,10 @@ setup(
     license = "Apache",
     keywords = "twitter license licenser open-source",
     url = "http://github.com/sem-io/python-twitter-spell-checking",
-    install_requires = ['python-twitter'],
+    install_requires = [
+        'python-twitter',
+        'ujson'
+    ],
 
     # Setting up executable/main functions links
     entry_points = {

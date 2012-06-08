@@ -4,7 +4,7 @@ from datetime import datetime
 import sys
 import argparse
 import os
-import json
+import ujson as json
 import ConfigParser
 
 import twitter
